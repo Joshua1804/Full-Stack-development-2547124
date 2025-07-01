@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Disaster Relief Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans dark:bg-gray-900 dark:text-white">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8">
+        <!-- Feedback Form Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Provide Feedback</h2>
+            <article class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white">
+                    </div>
+                    <div>
+                        <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Comment</label>
+                        <textarea id="comment" placeholder="Enter your comment" class="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:text-white" rows="4"></textarea>
+                    </div>
+                    <button onclick="submitFeedback()" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Submit</button>
+                    <p id="form-message" class="text-red-600 dark:text-red-400 hidden">Please enter both name and comment.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Submitted Feedback Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Submitted Feedback</h2>
+            <article class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
+                <ul id="feedbackList" class="space-y-2"></ul>
+                <button onclick="downloadFeedback()" class="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">Download Feedback (JSON)</button>
+                <p id="download-message" class="text-green-600 dark:text-green-400 mt-2 hidden">Feedback downloaded successfully!</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg dark:bg-gray-800">
+            <h3 class="text-xl font-semibold mb-4">Settings</h3>
+            <label class="block mb-2"><input type="radio" name="theme" value="light" onclick="setTheme('light')"> Light Mode</label>
+            <label class="block mb-4"><input type="radio" name="theme" value="dark" onclick="setTheme('dark')"> Dark Mode</label>
+            <button onclick="closeSettings()" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Load Components
+        function loadComponents() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    return fetch('nav.html');
+                })
+                .then(response => response.text())
+                .then(data => document.getElementById('nav-placeholder').innerHTML = data)
+                .catch(error => console.error('Error loading components:', error));
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('footer-placeholder').innerHTML = data)
+                .catch(error => console.error('Error loading footer:', error));
+        }
+
+        // Theme Management
+        function setTheme(theme) {
+            document.documentElement.className = theme;
+            localStorage.setItem('theme', theme);
+            document.querySelector(`input[value="${theme}"]`).checked = true;
+        }
+
+        function loadTheme() {
+            const theme = localStorage.getItem('theme') || 'light';
+            setTheme(theme);
+        }
+
+        // Settings Modal
+        function openSettings() {
+            document.getElementById('settings-modal').classList.remove('hidden');
+        }
+
+        function closeSettings() {
+            document.getElementById('settings-modal').classList.add('hidden');
+        }
+
+        // Feedback Management
+        function submitFeedback() {
+            const name = document.getElementById('name').value.trim();
+            const comment = document.getElementById('comment').value.trim();
+            const formMessage = document.getElementById('form-message');
+            if (name && comment) {
+                const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
+                feedback.push({ name, comment, timestamp: new Date().toISOString() });
+                localStorage.setItem('feedback', JSON.stringify(feedback));
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+                formMessage.classList.add('hidden');
+                loadFeedback();
+            } else {
+                formMessage.classList.remove('hidden');
+            }
+        }
+
+        function loadFeedback() {
+            const feedbackList = document.getElementById('feedbackList');
+            const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
+            feedbackList.innerHTML = '';
+            feedback.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'text-gray-600 dark:text-gray-300';
+                const date = new Date(item.timestamp);
+                const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+                li.textContent = `${item.name} (${formattedDate}): ${item.comment}`;
+                feedbackList.appendChild(li);
+            });
+        }
+
+        function downloadFeedback() {
+            const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
+            const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(feedback, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute('href', dataStr);
+            downloadAnchor.setAttribute('download', 'feedback.json');
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            document.body.removeChild(downloadAnchor);
+            const downloadMessage = document.getElementById('download-message');
+            downloadMessage.classList.remove('hidden');
+            setTimeout(() => downloadMessage.classList.addp('hidden'), 3000);
+        }
+
+        // Initialize
+        window.onload = () => {
+            loadComponents();
+            loadTheme();
+            loadFeedback();
+        };
+    </script>
+</body>
+</html>
