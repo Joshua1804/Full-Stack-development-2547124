@@ -1,413 +1,104 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Disaster Relief Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 font-sans dark:bg-gray-900 dark:text-white">
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relief Resource Allocation System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 text-gray-900">
 
-    <!-- Main Content -->
-    <main class="container mx-auto py-8">
-      <!-- Introduction Section -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">
-          Welcome to Disaster Relief Hub
-        </h2>
-        <div
-          class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
-        >
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Our Mission</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Coordinating resources, volunteers, and missions to respond to
-              disasters effectively.
-            </p>
-            <a
-              href="volunteers.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Get Involved</a
-            >
-          </article>
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Our Vision</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Building resilient communities through rapid and effective
-              disaster response.
-            </p>
-            <a
-              href="volunteers.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Join Us</a
-            >
-          </article>
-        </div>
-      </section>
-
-      <!-- Geolocation Section -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">
-          Our Main Relief Center Location
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">
-          Visit or contact our center to volunteer, donate resources, or learn
-          how you can contribute to disaster relief efforts.
-        </p>
-        <article class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
-          <div class="flex items-center mb-4">
-            <svg
-              class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              ></path>
-            </svg>
-            <p
-              id="location"
-              class="text-lg font-semibold text-gray-800 dark:text-gray-200"
-            >
-              Fetching our location...
-            </p>
-          </div>
-          <div id="map" class="w-full h-96 rounded-lg"></div>
-          <a
-            href="feedback.html"
-            class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-            >Contact Us</a
-          >
-        </article>
-      </section>
-
-      <!-- Current Initiatives Section -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Current Initiatives</h2>
-        <div
-          class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
-        >
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <div
-              class="flex items-center justify-center h-48 w-full mb-4 rounded bg-gray-100 dark:bg-gray-700"
-            >
-              <span
-                id="counter"
-                class="text-6xl font-extrabold text-blue-600 dark:text-blue-400"
-                >0</span
-              >
-              <span
-                class="text-3xl font-semibold text-blue-600 dark:text-blue-400"
-                >+</span
-              >
-            </div>
-            <h3 class="text-xl font-medium">Resource Distribution</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Distributing over 10,000 units of food and water weekly to
-              disaster-affected areas.
-            </p>
-            <a
-              href="centers.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Learn More</a
-            >
-          </article>
-
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Volunteer Impact</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Last month, 500 volunteers supported recovery efforts in City A.
-            </p>
-            <a
-              href="volunteers.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Join the Team</a
-            >
-          </article>
-        </div>
-      </section>
-
-      <!-- How You Can Help Section -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">How You Can Help</h2>
-        <div
-          class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
-        >
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Become a Volunteer</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Join our network to make a difference in disaster-affected
-              communities.
-            </p>
-            <a
-              href="volunteers.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Sign Up Now</a
-            >
-          </article>
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Donate Resources</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Support our mission by donating supplies or funds.
-            </p>
-            <a
-              href="feedback.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Learn More</a
-            >
-          </article>
-        </div>
-      </section>
-
-      <!-- Disaster Alerts Section -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Disaster Alerts</h2>
-        <div
-          class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
-        >
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Recent Disasters</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Hurricane in City A caused significant damage on June 1, 2025.
-            </p>
-            <a
-              href="events.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >See Details</a
-            >
-          </article>
-          <article
-            class="bg-white p-6 rounded-lg shadow-md flex-1 dark:bg-gray-800"
-          >
-            <img src="images/Mission.jpeg" alt="Descriptive alt text" class="h-48 w-full object-cover mb-4 rounded">
-            <h3 class="text-xl font-medium">Stay Prepared</h3>
-            <p class="text-gray-600 dark:text-gray-300">
-              Learn how to prepare your community for disasters with our
-              resources.
-            </p>
-            <a
-              href="events.html"
-              class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-              >Get Prepared</a
-            >
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Settings Modal -->
-    <div
-      id="settings-modal"
-      class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
-    >
-      <div class="bg-white p-6 rounded-lg dark:bg-gray-800">
-        <h3 class="text-xl font-semibold mb-4">Settings</h3>
-        <label class="block mb-2"
-          ><input
-            type="radio"
-            name="theme"
-            value="light"
-            onclick="setTheme('light')"
-          />
-          Light Mode</label
-        >
-        <label class="block mb-4"
-          ><input
-            type="radio"
-            name="theme"
-            value="dark"
-            onclick="setTheme('dark')"
-          />
-          Dark Mode</label
-        >
-        <button
-          onclick="closeSettings()"
-          class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-        >
-          Close
-        </button>
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-xl font-bold">Relief Resource Allocation System</div>
+      <div class="hidden md:flex space-x-6">
+        <a href="#" class="flex items-center gap-1"><i class="fa fa-home"></i> Home</a>
+        <a href="#" class="flex items-center gap-1"><i class="fa fa-box"></i> Resources</a>
+        <a href="#" class="flex items-center gap-1"><i class="fa fa-chart-bar"></i> Reports</a>
+        <a href="#" class="flex items-center gap-1"><i class="fa fa-envelope"></i> Contact</a>
       </div>
+      <button class="md:hidden block" id="menu-btn">
+        <i class="fa fa-bars text-2xl"></i>
+      </button>
     </div>
+    <div class="hidden md:hidden flex-col px-4 pt-4 space-y-2" id="mobile-menu">
+      <a href="#">Home</a>
+      <a href="#">Resources</a>
+      <a href="#">Reports</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
 
-    <!-- JavaScript -->
-    <script>
-      function animateCounter(id, endValue, duration = 2000) {
-        const counter = document.getElementById(id);
-        let start = 0;
-        const increment = endValue / (duration / 20);
+  <!-- Hero Section -->
+  <section class="h-screen bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('https://www.baltana.com/files/wallpapers-17/Stress-Relief-HD-Background-Wallpaper-44305.jpg');">
+    <div>
+      <h1 class="text-5xl font-bold mb-4">Efficient Relief Distribution</h1>
+      <p class="text-lg mb-6">Track, allocate, and manage resources effectively during emergencies.</p>
+      <a href="#" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded shadow text-white font-semibold">Get Started</a>
+    </div>
+  </section>
 
-        const updateCounter = () => {
-          start += increment;
-          if (start >= endValue) {
-            counter.textContent = endValue.toLocaleString(); // Format as "10,000"
-          } else {
-            counter.textContent = Math.floor(start).toLocaleString();
-            requestAnimationFrame(updateCounter);
-          }
-        };
-        updateCounter();
-      }
+  <!-- Video Section -->
+  <section class="p-8 bg-white">
+    <h2 class="text-2xl font-bold mb-4">Awareness Promo Video</h2>
+    <video controls class="w-full rounded">
+      <source src="Disaster Awareness and Preparedness.mp4" type="video/mp4">
+      <track src="Disaster Awareness and Preparedness.mp4.vtt" kind="subtitles" srclang="en" label="English">
+      Your browser does not support the video tag.
+    </video>
+  </section>
 
-      window.addEventListener("DOMContentLoaded", () => {
-        animateCounter("counter", 10000, 2000); // Animate to 10,000 in 2 seconds
+  <!-- Audio Section -->
+  <section class="p-8">
+    <h2 class="text-2xl font-bold mb-4">Calming Background Music</h2>
+    <audio controls class="w-full">
+      <source src="BGM.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+  </section>
+
+  <!-- Fetch API Section -->
+  <section class="p-8 bg-gray-50">
+    <h2 class="text-2xl font-bold mb-6">Recent Relief Updates</h2>
+    <div id="api-content" class="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
+  </section>
+
+  <!-- Footer with SVG Icon -->
+  <footer class="bg-green-600 text-white p-6 text-center">
+    <div class="flex justify-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C8.134 2 5 5.134 5 9c0 3.866 4 8 7 11 3-3 7-7.134 7-11 0-3.866-3.134-7-7-7z" />
+      </svg>
+    </div>
+    <p>&copy; 2025 Relief Resource Allocation System. All rights reserved.</p>
+  </footer>
+
+  <!-- Script Section -->
+  <script>
+    // Toggle hamburger menu
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Fetch API example
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('api-content');
+        data.forEach(post => {
+          const card = document.createElement('div');
+          card.className = 'bg-white p-4 shadow-md rounded';
+          card.innerHTML = `
+            <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
+            <p>${post.body}</p>
+          `;
+          container.appendChild(card);
+        });
       });
-      // Load Components
-      function loadComponents() {
-        fetch("header.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById("header-placeholder").innerHTML = data;
-            return fetch("nav.html");
-          })
-          .then((response) => response.text())
-          .then(
-            (data) =>
-              (document.getElementById("nav-placeholder").innerHTML = data)
-          )
-          .catch((error) => console.error("Error loading components:", error));
-        fetch("footer.html")
-          .then((response) => response.text())
-          .then(
-            (data) =>
-              (document.getElementById("footer-placeholder").innerHTML = data)
-          )
-          .catch((error) => console.error("Error loading footer:", error));
-      }
+  </script>
 
-      // Theme Management
-      function setTheme(theme) {
-        document.documentElement.className = theme;
-        localStorage.setItem("theme", theme);
-        document.querySelector(`input[value="${theme}"]`).checked = true;
-      }
-
-      function loadTheme() {
-        const theme = localStorage.getItem("theme") || "light";
-        setTheme(theme);
-      }
-
-      // Settings Modal
-      function openSettings() {
-        document.getElementById("settings-modal").classList.remove("hidden");
-      }
-
-      function closeSettings() {
-        document.getElementById("settings-modal").classList.add("hidden");
-      }
-
-      // Geolocation and Google Map
-      function initMap() {
-        if (!window.isSecureContext) {
-          document.getElementById("location").textContent =
-            "Geolocation requires a secure context (HTTPS or localhost).";
-          document.getElementById("map").innerHTML =
-            '<p class="text-gray-600 dark:text-gray-300">Map unavailable due to insecure context.</p>';
-          return;
-        }
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const { latitude, longitude } = position.coords;
-              document.getElementById(
-                "location"
-              ).textContent = `Latitude: ${latitude.toFixed(
-                4
-              )}, Longitude: ${longitude.toFixed(4)}`;
-              const mapOptions = {
-                center: { lat: latitude, lng: longitude },
-                zoom: 12,
-              };
-              try {
-                const map = new google.maps.Map(
-                  document.getElementById("map"),
-                  mapOptions
-                );
-                new google.maps.Marker({
-                  position: { lat: latitude, lng: longitude },
-                  map: map,
-                  title: "Main Relief Center",
-                });
-              } catch (error) {
-                document.getElementById("map").innerHTML =
-                  '<p class="text-gray-600 dark:text-gray-300">Error loading map: Invalid API key or network issue.</p>';
-              }
-            },
-            (error) => {
-              let errorMessage = "Unable to fetch location: ";
-              switch (error.code) {
-                case error.PERMISSION_DENIED:
-                  errorMessage += "Permission denied.";
-                  break;
-                case error.POSITION_UNAVAILABLE:
-                  errorMessage += "Position unavailable.";
-                  break;
-                case error.TIMEOUT:
-                  errorMessage += "Request timed out.";
-                  break;
-                default:
-                  errorMessage += "Unknown error.";
-              }
-              document.getElementById("location").textContent = errorMessage;
-              document.getElementById("map").innerHTML =
-                '<p class="text-gray-600 dark:text-gray-300">Map unavailable due to location error.</p>';
-            }
-          );
-        } else {
-          document.getElementById("location").textContent =
-            "Geolocation is not supported by this browser.";
-          document.getElementById("map").innerHTML =
-            '<p class="text-gray-600 dark:text-gray-300">Map unavailable.</p>';
-        }
-      }
-
-      // Initialize
-      window.onload = () => {
-        loadComponents();
-        loadTheme();
-        const script = document.createElement("script");
-        script.src =
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTZ0TojOQDtX8ld-SG3KpVpFokSd2McU&callback=initMap";
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
-      };
-    </script>
-  </body>
+</body>
 </html>
