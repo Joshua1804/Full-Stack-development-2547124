@@ -115,7 +115,7 @@
               <span
                 id="counter"
                 class="text-6xl font-extrabold text-blue-600 dark:text-blue-400"
-                >0</span
+                >10,000</span
               >
               <span
                 class="text-3xl font-semibold text-blue-600 dark:text-blue-400"
@@ -267,26 +267,6 @@
 
     <!-- JavaScript -->
     <script>
-      function animateCounter(id, endValue, duration = 2000) {
-        const counter = document.getElementById(id);
-        let start = 0;
-        const increment = endValue / (duration / 20);
-
-        const updateCounter = () => {
-          start += increment;
-          if (start >= endValue) {
-            counter.textContent = endValue.toLocaleString(); // Format as "10,000"
-          } else {
-            counter.textContent = Math.floor(start).toLocaleString();
-            requestAnimationFrame(updateCounter);
-          }
-        };
-        updateCounter();
-      }
-
-      window.addEventListener("DOMContentLoaded", () => {
-        animateCounter("counter", 10000, 2000); // Animate to 10,000 in 2 seconds
-      });
       // Load Components
       function loadComponents() {
         fetch("header.html")
@@ -321,16 +301,6 @@
         const theme = localStorage.getItem("theme") || "light";
         setTheme(theme);
       }
-
-      // Settings Modal
-      function openSettings() {
-        document.getElementById("settings-modal").classList.remove("hidden");
-      }
-
-      function closeSettings() {
-        document.getElementById("settings-modal").classList.add("hidden");
-      }
-
       // Geolocation and Google Map
       function initMap() {
         if (!window.isSecureContext) {

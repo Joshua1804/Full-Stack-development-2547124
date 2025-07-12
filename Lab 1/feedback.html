@@ -74,27 +74,6 @@
                 .catch(error => console.error('Error loading footer:', error));
         }
 
-        // Theme Management
-        function setTheme(theme) {
-            document.documentElement.className = theme;
-            localStorage.setItem('theme', theme);
-            document.querySelector(`input[value="${theme}"]`).checked = true;
-        }
-
-        function loadTheme() {
-            const theme = localStorage.getItem('theme') || 'light';
-            setTheme(theme);
-        }
-
-        // Settings Modal
-        function openSettings() {
-            document.getElementById('settings-modal').classList.remove('hidden');
-        }
-
-        function closeSettings() {
-            document.getElementById('settings-modal').classList.add('hidden');
-        }
-
         // Feedback Management
         function submitFeedback() {
             const name = document.getElementById('name').value.trim();
