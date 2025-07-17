@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CoffeeHub</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    </head>
+
+    <body class="bg-gray-100 text-gray-900">
+        <nav>
+            <div class="bg-black p-4 shadow flex center justify-between items-center">
+                <a href="index.html">
+                    <img src="../img.png" alt="logo" class="h-10 mb-2" /></a>
+                <h1 class="text-white text-3xl font-bold">CoffeeHub</h1>
+                <div class="text-white hidden md:flex">
+                    <a href="index.html" class="hover:bg-white hover:text-black p-2 flex items-center gap-2 rounded">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="coffee_cup.html" class="hover:bg-white hover:text-black p-2 flex items-center gap-2 rounded">
+                        <i class="fas fa-coffee"></i> coffee cup
+                    </a>
+                    <a href="#Geolocation" class="hover:bg-white hover:text-black p-2 flex items-center gap-2 rounded">
+                        <i class="fa-regular fa-address-card"></i> contact
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="h-screen bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('https://images3.alphacoders.com/863/863185.jpg');">
+            <div>
+                <h1
+                    class="text-4xl text-center mt-10 font-bold hover:underline hover:text-yellow-500">
+                    CoffeeHub
+                </h1>
+                <p class="text-center mt-4 text-lg">
+                    Where Coffee Meets Community
+                </p>
+            </div>
+        </section>
+
+        <section class="p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                        <h2 class="text-3xl font-bold mb-4">Welcome to CoffeeHub</h2>
+                        <video controls>
+                            <source src="Coffee.mp4" type="video/mp4" />
+                            <track src="coffee.vtt">
+                        </track>
+                    </video>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Type Of Coffee we offer </h2>
+                    <audio controls class="w-full rounded">
+                        <source src="Coffee.mp3" type="audio/mpeg" />
+                    </audio>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="p-6 bg-white">
+            <h3 class="text-2xl">Tell us What is your favorate Coffee</h3>
+            <form id="contactForm" class="m-4">
+                <input id="name" type="text" placeholder="Your Name"
+                    class="w-full p-2 border rounded mb-4" required />
+                <input id="email" type="email" placeholder="Your Email"
+                    class="w-full p-2 border rounded mb-4" required />
+                <textarea id="message" placeholder="Your Favorate Coffee"
+                    class="w-full p-2 border rounded mb-4"
+                    required></textarea>
+                <button type="submit"
+                    class="bg-blue-600 rounded text-white p-2 flex justify-center">
+                    Submit
+                </button>
+                <div id="Geolocation" class="mt-4 flex justify-center flex-col">
+                    <button type="button" onclick="getLocation()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded">
+                        Get Coordinates
+                    </button>
+                    <p id="location" class="mt-2 text-lg text-white bg-black hover:text-black hover:bg-purple-500 rounded p-2"></p>
+                </div>
+            </form>
+        </section>
+
+        <footer>
+            <div class="bg-gray-800 text-white p-4 text-center">
+                <p>&copy; 2023 CoffeeHub. All rights reserved.</p>
+                <p>Follow us on:
+                    <a href="#" class="text-blue-400 hover:underline"><i
+                            class="fab fa-facebook"></i> Facebook</a>,
+                    <a href="#" class="text-blue-400 hover:underline"><i
+                            class="fab fa-twitter"></i> Twitter</a>,
+                    <a href="#" class="text-blue-400 hover:underline"><i
+                            class="fab fa-instagram"></i> Instagram</a>
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            //This Script is for getting the location coordinates and displaying them
+            function getLocation() {
+                const output = document.getElementById("location");
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (pos) => {
+                            const lat = pos.coords.latitude.toFixed(5);
+                            const lon = pos.coords.longitude.toFixed(5);
+                            output.textContent = `Latitude: ${lat}, Longitude: ${lon}`;
+                        },
+                        () => (output.textContent = "Location access denied.")
+                    );
+                } else {
+                    output.textContent = "Geolocation not supported.";
+                }
+            }
+            // This script handles the contact form submission and stores data in local storage
+            document.getElementById("contactForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+                if (!name || !email || !message) {
+                    alert("All fields are required!");
+                    return;
+                }
+                localStorage.setItem(
+                    "contactData",
+                    JSON.stringify({ name, email, message })
+                );
+                alert("Form submitted and saved locally!");
+                e.target.reset();
+                document.getElementById("location").textContent = "";
+            });
+            // display the saved data
+            window.addEventListener("DOMContentLoaded", () => {
+                const savedData = localStorage.getItem("contactData");
+                if (savedData) {
+                    const { name, message } = JSON.parse(savedData);
+                    const greeting = document.createElement("p");
+                    greeting.textContent = `Hello, ${name}! You love ${message}.`;
+                    greeting.className = "text-xl text-green-600 font-semibold mb-4";
+                    document.getElementById("contact").prepend(greeting);
+                }
+            });
+        </script>
+    </body>
+</HTml>
